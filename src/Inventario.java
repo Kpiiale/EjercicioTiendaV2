@@ -2,16 +2,15 @@ public class Inventario {
 
     private Producto[] p;
 
-    public Inventario() {
+   public Inventario() {
         this.p = new Producto[4];
-
-        p[0] = new Producto("Lápiz", 0, 10, 5, 1.00);
-        p[1] = new Producto("Manzana", 1, 20, 5, 0.25);
-        p[2] = new Producto("Aspirina", 2, 10, 3, 2.25);
-        p[3] = new Producto("Pera", 1, 20, 5, 0.25);
+        //Tipo 0= Papeleria, 2 = Supermercado, 3 = Drogueria
+        p[0] = new Producto("Lápiz", 0, 10, 5, 0.50);
+        p[1] = new Producto("Leche", 1, 15, 5, 0.80);
+        p[2] = new Producto("Shampoo", 2, 15, 5, 2.25);
+        p[3] = new Producto("Pan", 1, 40, 10, 0.15);
 
     }
-
     public void reabastecerProducto(int id, int cantidad) {
         p[id].setCantidadActual(p[id].getCantidadActual()+cantidad);
     }
