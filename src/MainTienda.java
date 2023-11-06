@@ -68,7 +68,7 @@ public class MainTienda {
                     System.out.println("Ingrese el nuevo nombre del producto");
                     nombre = sc.nextLine();
                     System.out.println("Ingrese el nuevo tipo del producto segun la siguiente lista:");
-                    System.out.println("\n0= Papeleria \n 2 = Supermercado \n 3 = Drogueria");
+                    System.out.println("\n0= Papeleria \n 1 = Supermercado \n 2 = Drogueria");
                     tipo = Integer.parseInt(sc.next());
                     System.out.println("Ingrese la nueva cantidad en inventario");
                     cantidadActual = Integer.parseInt(sc.next());
