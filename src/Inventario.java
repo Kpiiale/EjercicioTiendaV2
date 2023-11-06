@@ -4,7 +4,7 @@ public class Inventario {
 
    public Inventario() {
         this.p = new Producto[4];
-        //Tipo 0= Papeleria, 2 = Supermercado, 3 = Drogueria
+        //Tipo 0= Papeleria, 1 = Supermercado, 2 = Drogueria
         p[0] = new Producto("Lápiz", 0, 10, 5, 0.50);
         p[1] = new Producto("Leche", 1, 15, 5, 0.80);
         p[2] = new Producto("Shampoo", 2, 15, 5, 2.25);
