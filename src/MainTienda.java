@@ -2,28 +2,27 @@ import java.util.Scanner;
 
 public class MainTienda {
     public static void main(String[] args) {
-        int opc, flag = 1, producto, cantidad;
+        int op, producto, cantidad;
         Scanner sc = new Scanner(System.in);
         Inventario inventario = new Inventario();
         Venta venta = new Venta();
 
-        while (flag == 1) {
-            System.out.println("Elige una opción: ");
-            System.out.println("1 - Información de productos");
-            System.out.println("2 - Vender un producto");
-            System.out.println("3 - Abastecer un producto");
-            System.out.println("4 - Editar un producto");
-            System.out.println("5 - Estadísticas de venta");
-            System.out.println("6 - Salir");
+       do {
+            System.out.println("Seleccione una opcion: ");
+            System.out.println("1. Visualizacion de productos");
+            System.out.println("2. Vender un producto");
+            System.out.println("3. Abastecer la tienda con un producto");
+            System.out.println("4. Cambiar un producto");
+            System.out.println("5. Estadísticas de venta");
+            System.out.println("6. Salir");
 
-            opc = Integer.parseInt(sc.next());
+            op = Integer.parseInt(sc.next());
 
-            switch (opc) {
+            switch (op) {
                 case 1:
                     for (int i = 0; i < inventario.getP().length; i++) {
-                        System.out.println("Producto " + (i + 1) + ":");
-                        System.out.println("Nombre: " + inventario.getP()[i].getNombre());
-                        System.out.println("Tipo: " + inventario.getP()[i].getTipo());
+                        System.out.println("Producto " + (i + 1) + ": " + inventario.getP()[i].getNombre());
+                         System.out.println("Tipo: " + inventario.getP()[i].getTipo());
                         System.out.println("Cantidad actual: " + inventario.getP()[i].getCantidadActual());
                         System.out.println("Cantidad mínima: " + inventario.getP()[i].getCantidadMin());
                         System.out.println("Precio base: " + inventario.getP()[i].getPrecioBase());
@@ -33,7 +32,10 @@ public class MainTienda {
                     break;
 
                 case 2:
-                    System.out.println("Elija el producto a vender (1-4): ");
+                    System.out.println("Seleccione el producto que desea vender (Ingresar el numero correspondiente a cada producto):");
+                    for (int i = 0; i < inventario.getP().length; i++) {
+                        System.out.println("Producto " + (i + 1) + ": " + inventario.getP()[i].getNombre());
+                    }
                     producto = Integer.parseInt(sc.next()) - 1;
                     System.out.println("Cantidad vendida: ");
                     cantidad = Integer.parseInt(sc.next());
@@ -42,9 +44,12 @@ public class MainTienda {
                     break;
 
                 case 3:
-                    System.out.println("Ingrese el producto a reabastecer (1-4): ");
+                    System.out.println("Ingrese el producto a reabastecer (Ingresar el numero correspondiente a cada producto): ");
+                    for (int i = 0; i < inventario.getP().length; i++) {
+                        System.out.println("Producto " + (i + 1) + ": " + inventario.getP()[i].getNombre());
+                    }
                     producto = Integer.parseInt(sc.next()) - 1;
-                    System.out.println("Ingrese la cantidad de producto que entra: ");
+                    System.out.println("Ingrese la cantidad: ");
                     cantidad = Integer.parseInt(sc.next());
 
                     inventario.reabastecerProducto(producto, cantidad);
@@ -55,11 +60,15 @@ public class MainTienda {
                     int tipo, cantidadActual, cantidadMin;
                     double precioBase;
 
-                    System.out.println("Ingrese el producto que desea modificar (1-4)");
+                    System.out.println("Ingrese el producto que desea modificar (Ingresar el numero correspondiente a cada producto) ");
+                    for (int i = 0; i < inventario.getP().length; i++) {
+                        System.out.println("Producto " + (i + 1) + " " + inventario.getP()[i].getNombre());
+                    }
                     producto = Integer.parseInt(sc.next()) - 1;
                     System.out.println("Ingrese el nuevo nombre del producto");
                     nombre = sc.nextLine();
-                    System.out.println("Ingrese el nuevo tipo del producto (0-2 (ver documentación))");
+                    System.out.println("Ingrese el nuevo tipo del producto segun la siguiente lista:");
+                    System.out.println("\n0= Papeleria \n 2 = Supermercado \n 3 = Drogueria");
                     tipo = Integer.parseInt(sc.next());
                     System.out.println("Ingrese la nueva cantidad en inventario");
                     cantidadActual = Integer.parseInt(sc.next());
@@ -72,20 +81,20 @@ public class MainTienda {
                     break;
 
                 case 5:
-                    int opc1 = 0, flag1 = 1;
+                    int op1 = 0;
 
-                    while (flag1 == 1){
+                    do{
 
-                        System.out.println("Elija una opción");
-                        System.out.println("1. Producto más vendido");
-                        System.out.println("2. Producto menos vendido");
+                        System.out.println("Porfavor elija una opcion");
+                        System.out.println("1. El producto más vendido");
+                        System.out.println("2. El producto menos vendido");
                         System.out.println("3. Cantidad total de dinero recaudado por ventas");
                         System.out.println("4. Cantidad dinero recaudado por ventas de un producto");
                         System.out.println("5. Volver");
 
-                        opc1 = Integer.parseInt(sc.next());
+                        op1 = Integer.parseInt(sc.next());
 
-                        switch (opc1){
+                        switch (op1){
                             case 1:
                                 producto = venta.productoMasVendido();
                                 System.out.println("El producto más vendido es: " + inventario.getP()[producto] + " con " + venta.ventasProducto(producto) + " unidades vendidas");
@@ -103,24 +112,22 @@ public class MainTienda {
                                 System.out.println("El dinero recaudado por el producto " + inventario.getP()[producto].getNombre() + " es: " + venta.dineroVentasProducto(producto));
                                 break;
                             case 5:
-                                flag1 = 0;
                                 break;
                             default:
                                 System.out.println("Ingrese una opción valida");
                                 break;
                         }
-                    }
+                    }while (op1 != 5);
                     break;
 
                 case 6:
                     System.out.println("Fin del programa");
-                    flag = 0;
                     break;
 
                 default:
                     System.out.println("Ingrese una opción válida");
                     break;
             }
-        }
+        } while (op != 6);
     }
 }
